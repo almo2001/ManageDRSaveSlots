@@ -1,4 +1,5 @@
-`# ManageDRSaveSlots
+```
+# ManageDRSaveSlots
 A tool to manage Deadzone: Rogue save slots
 -------------------------------------------
 
@@ -32,8 +33,6 @@ Managing multiple saves:
 	6. Exit the game, and restart the tool.
 	7. You now have your original save in the Default slot, and the new clean save in the newly created slot.
 
-`
 
 
-
-
+```
