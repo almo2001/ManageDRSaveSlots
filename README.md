@@ -28,7 +28,7 @@ Initialization:
 2. Upon first startup, it copies your save into the Default slot.
 
 Managing multiple saves:
-1. Use the Create option to makqqqqqqqqqqqe a new save.
+1. Use the Create option to make a new save.
 2. This copies the current save from the game into the slot.
 3. Use the Switch option to switch to the new slot.
 4. Close the tool.
