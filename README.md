@@ -1,4 +1,3 @@
-```
 # ManageDRSaveSlots
 A tool to manage Deadzone: Rogue save slots
 -------------------------------------------
@@ -18,21 +17,19 @@ Usage:
 ------
 
 Installation:
-	1. Just drop the .exe anywhere. It stores its data in the Windows AppData folder, it doesn't matter where it is.
+1. Just drop the .exe anywhere. It stores its data in the Windows AppData folder, it doesn't matter where it is.
 
 Initialization:
-	1. Start the program. It should find your save files automatically.
-	2. Upon first startup, it copies your save into the Default slot.
+1. Start the program. It should find your save files automatically.
+2. Upon first startup, it copies your save into the Default slot.
 
 Managing multiple saves:
-	1. Use the Create option to make a new save.
-	2. This copies the current save from the game into the slot.
-	3. Use the Switch option to switch to the new slot.
-	4. Close the tool.
-	5. If you wish it to be a clean save from the very beginning of the game, now start the game and use the Reset Data option.
-	6. Exit the game, and restart the tool.
-	7. You now have your original save in the Default slot, and the new clean save in the newly created slot.
+1. Use the Create option to make a new save.
+2. This copies the current save from the game into the slot.
+3. Use the Switch option to switch to the new slot.
+4. Close the tool.
+5. If you wish it to be a clean save from the very beginning of the game, now start the game and use the Reset Data option.
+6. Exit the game, and restart the tool.
+7. You now have your original save in the Default slot, and the new clean save in the newly created slot.
 
 
-
-```
