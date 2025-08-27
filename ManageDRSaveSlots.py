@@ -8,9 +8,10 @@ import sys
 #-----------------------
 # "constant" definitions
 
-c_version = "V0.9"
+c_version = "V0.9.1"
 
 c_almoDataPath = os.path.join(os.getenv('LOCALAPPDATA'), "AlmoDeadzoneRogueSaveManager")
+c_almoDisclaimerFile = os.path.join(c_almoDataPath, "ADRSMDisclaimerAccepted.txt")
 c_almoSaveLibraryPath = os.path.join(c_almoDataPath, "SaveLibrary")
 c_almoSaveNamesFile = os.path.join(c_almoDataPath, "ADRSM-SlotNames.txt")
 c_almoSaveBasenameWithPath = os.path.join(c_almoSaveLibraryPath, "ADRSM-SaveSlot-")
@@ -42,8 +43,7 @@ def CopyFromGameToSlot(slotNum):
 	else:
 		print("Could not find a save file.")
 		print("I looked for " + c_deadzoneSaveFile + " or " + c_deadzoneSaveFile2 + ".")
-		exit(1)
-
+		sys.exit(1)
 
 def DisplayAllSaves():
 	currentSlot = GetCurrentSaveSlotNum()
@@ -59,12 +59,25 @@ def DisplayAllSaves():
 	print()
 	print()
 
+def DisplayDisclaimer():
+	PrintOpeningLine("Disclaimer:")
+	print()
+	print("This tool is not in any way endorsed or supported by Prophecy Games.")
+	print("If you suffer a loss of data after using this tool, please do not ask people")
+	PrintEndingLine("about it in their discord channel. Also do not try to contect the developers.")
+	print()
+	response = input("Please type 'yes' and hit enter to indicate that you have read this:")
+	if response.lower() == "yes":
+		return True
+	else:
+		return False
+		
 def DisplayIntro():
 	print()
 	print("-----------------------------------------")
 	print("Almo's Deadzone: Rogue Save File Manager!")
 	print("Version " + c_version + ".")
-	print("Use at your own risk, etc.")
+	print("Prophecy Games does not endorse or support this tool. Use at your own risk, etc.")
 	print("I think your Deadzone saves are here:")
 	print(c_deadzoneSaveFilesPath)
 	print("Please backup any .sav files there before using this tool.")
@@ -76,9 +89,8 @@ def DisplayOptions():
 	print("Options: (S)witch (C)reate (R)ename (D)elete E(x)it")
 
 def GetCurrentSaveSlotNum():
-	almoStateFile = open(c_almoStateFile, "r")
-	currentSaveSlot = almoStateFile.read()
-	almoStateFile.close()
+	with open(c_almoStateFile, "r") as almoStateFile:
+		currentSaveSlot = almoStateFile.read()
 	return currentSaveSlot
 
 def GetListOfSaveFiles():
@@ -87,8 +99,8 @@ def GetListOfSaveFiles():
 	return listOfSaveFiles
 
 def GetSaveFileNamesDict():
-	listOfNamesDictFile = open(c_almoSaveNamesFile, "r")
-	loadedDict = json.load(listOfNamesDictFile)
+	with open(c_almoSaveNamesFile, "r") as listOfNamesDictFile:
+		loadedDict = json.load(listOfNamesDictFile)
 	return loadedDict
 
 def Initialize():
@@ -105,9 +117,8 @@ def Initialize():
 		print("Status file exists.")
 
 	if not os.path.exists(c_almoSaveNamesFile):
-		almoSaveNamesFile = open(c_almoSaveNamesFile, "w")
-		almoSaveNamesFile.write("{}")
-		almoSaveNamesFile.close()
+		with open(c_almoSaveNamesFile, "w") as almoSaveNamesFile:
+			almoSaveNamesFile.write("{}")
 		print("Save names file created.")
 	else:
 		print("Save names file exists.")
@@ -143,14 +154,12 @@ def SaveFileExists(saveNumber):
 	return os.path.exists(c_almoSaveBasenameWithPath)
 
 def WriteCurrentSlotNum(slotNum):
-	almoStateFile = open(c_almoStateFile, "w")
-	almoStateFile.write('{}'.format(slotNum))
-	almoStateFile.close()
+	with open(c_almoStateFile, "w") as almoStateFile:
+		almoStateFile.write('{}'.format(slotNum))
 
 def WriteSlotDict(slotDict):
-	slotDictFile = open(c_almoSaveNamesFile, "w")
-	json.dump(slotDict, slotDictFile, indent = 4)
-	slotDictFile.close()
+	with open(c_almoSaveNamesFile, "w") as slotDictFile:
+		json.dump(slotDict, slotDictFile, indent = 4)
 
 # -----
 # modes
@@ -268,6 +277,14 @@ def SwitchSlot(slotDict, currentSaveSlotNum):
 # program
 
 atexit.register(Pause)
+
+if not os.path.exists(c_almoDisclaimerFile):
+	if DisplayDisclaimer():
+		with open(c_almoDisclaimerFile, "w") as almoDisclaimerAcceptedFile:
+			almoDisclaimerAcceptedFile.write("Yes. Accepted. Totally fine. No, really. It's cool.")
+	else:
+		print("Disclaimer not accepted. Exiting tool.")
+		sys.exit(1)
 
 DisplayIntro()
 Initialize()

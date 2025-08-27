@@ -11,7 +11,7 @@ Note that this tool only updates its version of your save when you start it.
 
 Disclaimer:
 -----------
-I have no affiliation with Prophecy Games, and this tool is not endorsed by nor approved of in any way by them.
+I have no affiliation with Prophecy Games, and this tool is neither endorsed by nor approved of in any way by them.
 
 Platforms:
 ----------
