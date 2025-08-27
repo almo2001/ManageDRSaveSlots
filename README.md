@@ -2,7 +2,7 @@
 A tool to manage Deadzone: Rogue save slots
 -------------------------------------------
 
-Welcome to V0.9 of Almo's Deadzone: Rogue Save File Manager!
+Welcome to V0.9.1 of Almo's Deadzone: Rogue Save File Manager!
 ------------------------------------------------------------
 
 As the game doesn't currently support multiple saves, I wrote this to allow players to keep several save slots with different progress for different groups of players they play with.
